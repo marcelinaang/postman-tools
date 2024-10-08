@@ -124,6 +124,21 @@ sampleValue = String.raw`{
 		]
 	}
 }`;
+emojiList = [
+  "φ(*￣0￣)",
+  "╰(*°▽°*)╯",
+  "(●ˇ∀ˇ●)",
+  "(￣y▽￣)╭ Ohohoho.....",
+  "(〃￣︶￣)人(￣︶￣〃)",
+  "o((>ω< ))o",
+  "ƪ(˘⌣˘)ʃ",
+  "(╹ڡ╹ )",
+  "(¬‿¬)",
+  "(✿◕‿◕✿)",
+  "( ͡• ͜ʖ ͡• )",
+  "¯_(ツ)_/¯",
+  "XD"
+];
 
 // elements
 processButton = document.getElementById("processButton");
@@ -141,12 +156,28 @@ resetButton.addEventListener("click", resetAll);
 sampleButton.addEventListener("click", copySample);
 
 // functions
-const appendAlert = (message) => {
+function customRandom(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+const appendErrorAlert = (message) => {
   const wrapper = document.createElement("div");
   wrapper.innerHTML = [
     '<div class="alert alert-danger mb-2 alert-dismissible fade show" role="alert">',
     "   <h6>Oops! Process failed XD</h6>",
     `   <subtitle>${message}</subtitle>`,
+    '   <button id="closeAlertButton" type="button" class="btn-close" onClick=closeAlert()></button>',
+    "</div>",
+  ].join("");
+
+  alertSection.append(wrapper);
+};
+const appendSuccessAlert = (message) => {
+  const wrapper = document.createElement("div");
+  const idx = customRandom(1, emojiList.length);
+  wrapper.innerHTML = [
+    '<div class="alert alert-success mb-2 alert-dismissible fade show" role="alert">',
+    `   <subtitle>${message} row(s) processed successfully! ${emojiList[idx]}</subtitle>`,
     '   <button id="closeAlertButton" type="button" class="btn-close" onClick=closeAlert()></button>',
     "</div>",
   ].join("");
@@ -168,15 +199,15 @@ function process() {
     result = "";
 
     inputResult.forEach((item) => {
-      // itemResult = JSON.stringify(Object.keys(item)[0])
       itemResult = Object.keys(item)[0];
       console.log(itemResult);
       result += itemResult;
       result += "\n";
     });
     outputArea.innerHTML = result;
+    appendSuccessAlert(totalResult);
   } catch (error) {
-    appendAlert(error);
+    appendErrorAlert(error);
   }
 }
 function copyOutput() {
@@ -185,11 +216,10 @@ function copyOutput() {
 }
 function resetAll() {
   closeAlert();
-  inputArea.value = "";
-  outputArea.value = "";
+  inputArea.innerHTML = "";
+  outputArea.innerHTML = "";
 }
 function copySample() {
   closeAlert();
-  console.log(sampleValue)
   inputArea.innerHTML = sampleValue;
 }
