@@ -12,10 +12,10 @@
 
 <body>
   <nav class="navbar navbar-light bg-secondary text-light mb-3 ps-2 pe-3">
-    <h1>Postman Helper Tools: Result Converter</h1>
+    <h1>Postman Helper Tools: Post-response Generator</h1>
     <div class="d-flex align-items-center">
-      <a class="nav-item nav-link ms-1 me-1" href="#">Result Converter</a>|
-      <a class="nav-item nav-link ms-1 me-1" href="./generator.html">Post-response Generator</a>
+      <a class="nav-item nav-link ms-1 me-1" href="./index.html">Result Converter</a>|
+      <a class="nav-item nav-link ms-1 me-1" href="#">Post-response Generator</a>
       <button class="btn btn-link text-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight">
         <i class="bi bi-question-circle"></i>
@@ -43,51 +43,60 @@
     </div>
   </nav>
   <main class="container-fluid">
-    <div class="row">
-      <div class="col-md-11">
-        <h4>Input</h4>
-      </div>
-      <div class="col-md-1 d-grid">
-        <button type="button" class="btn btn-outline-light mb-2" id="resetButton">
-          <i class="bi bi-arrow-clockwise"></i> Reset
-        </button>
-      </div>
-    </div>
-    <div class="input-group mb-2">
-      <textarea class="form-control" name="inputArea" id="inputArea" cols="150" rows="10"
-        placeholder="Paste exported result here..."></textarea>
-    </div>
     <div id="alertSection"></div>
-
     <div class="row">
-      <div class="col-md-11"></div>
-      <div class="col-md-1 d-grid">
-        <button type="button" class="btn btn-primary" id="processButton">
-          <i class="bi bi-magic"></i> Process
-        </button>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-10">
+            <h4>Input</h4>
+          </div>
+          <div class="col-md-2 d-grid">
+            <button type="button" class="btn btn-outline-light mb-2" id="resetButton">
+              <i class="bi bi-arrow-clockwise"></i> Reset
+            </button>
+          </div>
+        </div>
+        <h5 class="mb-1">Successful Response</h5>
+        <div class="input-group">
+          <textarea class="form-control" name="successfulInputArea" id="successfulInputArea" cols="150" rows="10"
+            placeholder="Paste successful response here..."></textarea>
+        </div>
+        <h5 class="mb-1">Failed Response</h5>
+        <div class="input-group">
+          <textarea class="form-control" name="failedInputArea" id="failedInputArea" cols="150" rows="10"
+            placeholder="Paste failed response here..."></textarea>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-10"></div>
+          <div class="col-md-2 d-grid">
+            <button type="button" class="btn btn-primary" id="processButton">
+              <i class="bi bi-magic"></i> Process
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
-    <hr />
-
-    <div class="row">
-      <div class="col-md-11">
-        <h4>Output</h4>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-10">
+            <h4>Output</h4>
+          </div>
+          <div class="col-md-2 d-grid">
+            <button type="button" class="btn btn-outline-light btn-block mb-2" id="copyButton">
+              <i class="bi bi-copy"></i> Copy
+            </button>
+          </div>
+        </div>
+        <div class="input-group mb-5">
+          <textarea class="form-control" name="outputArea" id="outputArea" cols="150" rows="25"
+            placeholder="Output will be displayed here..." disabled></textarea>
+        </div>
       </div>
-      <div class="col-md-1 d-grid">
-        <button type="button" class="btn btn-outline-light btn-block mb-2" id="copyButton">
-          <i class="bi bi-copy"></i> Copy
-        </button>
-      </div>
-    </div>
-    <div class="input-group mb-5">
-      <textarea class="form-control" name="outputArea" id="outputArea" cols="150" rows="10"
-        placeholder="Output will be displayed here..." disabled></textarea>
     </div>
   </main>
   <footer class="footer bg-secondary text-light">
     <div class="container-fluid pt-3 pb-3">
-      <small>This page converts postman runner execution's exported result to
-        textfile with pipe (|) as separator. <br />Disclaimer: This is unofficial tools for personal use only. The
+      <small>This page generates post-response script for common responses from Treasury - FX services.
+        <br />Disclaimer: This is unofficial tools for personal use only. The
         author assumes no responsibility or liability for any errors or omissions in the content
         of this tools and its result. (MAN | 2024-10-08)</small>
     </div>
@@ -96,7 +105,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
-  <script src="index.js"></script>
+  <script src="generator.js"></script>
 </body>
 
 </html>

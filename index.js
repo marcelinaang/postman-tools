@@ -137,7 +137,7 @@ emojiList = [
   "(✿◕‿◕✿)",
   "( ͡• ͜ʖ ͡• )",
   "¯_(ツ)_/¯",
-  "XD"
+  "XD",
 ];
 
 // elements
@@ -188,6 +188,17 @@ const appendSuccessAlert = (message) => {
 function closeAlert() {
   alertSection.innerHTML = "";
 }
+function copyOutput() {
+  outputArea.select();
+  navigator.clipboard.writeText(outputArea.value);
+}
+function resetAll() {
+  location.reload();
+}
+function copySample() {
+  closeAlert();
+  inputArea.innerHTML = sampleValue;
+}
 
 function process() {
   closeAlert();
@@ -209,17 +220,4 @@ function process() {
   } catch (error) {
     appendErrorAlert(error);
   }
-}
-function copyOutput() {
-  outputArea.select();
-  navigator.clipboard.writeText(outputArea.value);
-}
-function resetAll() {
-  closeAlert();
-  inputArea.innerHTML = "";
-  outputArea.innerHTML = "";
-}
-function copySample() {
-  closeAlert();
-  inputArea.innerHTML = sampleValue;
 }
